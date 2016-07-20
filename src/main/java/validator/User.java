@@ -1,5 +1,6 @@
 package validator;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 /**
  * Created by wjk on 16/7/20.
  */
+@Data
 public class User implements Serializable {
     @NotNull(message = "{user.id.null}")
     private Long id;

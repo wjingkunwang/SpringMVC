@@ -5,24 +5,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="conversion"/>
-    <!--装配自定义conversionService-->
-    <mvc:annotation-driven conversion-service="conversionService" />
-
-
-    <!--装配自定义转换器-->
-    <bean id="conversionService"
-          class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+    <context:component-scan base-package="conversion.way1"/>
+    <!-- 自定义参数绑定 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!-- 转换器 -->
         <property name="converters">
             <set>
-                <bean class="conversion.StringToUserConverter"/>
+                <!-- StringToUser -->
+                <bean class="conversion.way1.StringToStudentConverter"/>
             </set>
         </property>
     </bean>
-
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
-        <!--<property name="webBindingInitializer">-->
-            <!--<bean class="conversion.MyWebBindingInitializer"/>-->
-        <!--</property>-->
-    <!--</bean>-->
 </beans>

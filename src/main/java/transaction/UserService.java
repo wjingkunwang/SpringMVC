@@ -15,7 +15,7 @@ public class UserService {
     private JdbcTemplate jdbcTemplate;
 
     @RequestMapping("/login")
-    @Transactional
+//    @Transactional(readOnly = true)
     public String login() throws Exception {
 //        ((UserService) AopContext.currentProxy()).modify();
         String sql = "UPDATE student  SET name = ?   WHERE id = ? ";
@@ -24,7 +24,7 @@ public class UserService {
     }
 
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW, noRollbackFor = NullPointerException.class)
+//    @Transactional(propagation = Propagation.REQUIRES_NEW, noRollbackFor = NullPointerException.class)
     public void modify() throws Exception {
         String sql = "UPDATE student  SET name = ?   WHERE id = ? ";
         jdbcTemplate.update(sql, "123312", 2);

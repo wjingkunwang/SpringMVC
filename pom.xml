@@ -184,6 +184,19 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.12</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -269,4 +282,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

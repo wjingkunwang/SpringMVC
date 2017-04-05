@@ -12,12 +12,63 @@
     http://www.springframework.org/schema/context/spring-context-2.5.xsd
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <mvc:annotation-driven />
-    <!-- 不用@Configuration的话这个是必须出现在本文件中的 -->
-    <context:component-scan
-            base-package="swagger.controller"/>
-    <bean class="swagger.SpringfoxDocConfig"/>
-    <!-- 直接访问的静态文件 -->
-    <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/"/>
+    <context:component-scan base-package="task"/>
+    <!-- disconf 配置 start -->
+    <!-- 开启组件扫描 -->
+    <!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+    <!-- 使用disconf必须添加以下配置 -->
+    <bean id="disconfMgrBean" class="com.baidu.disconf.client.DisconfMgrBean"
+          destroy-method="destroy">
+        <property name="scanPackage" value="task"/>
+    </bean>
+    <bean id="disconfMgrBean2" class="com.baidu.disconf.client.DisconfMgrBeanSecond"
+          init-method="init" destroy-method="destroy">
+    </bean>
+    <!-- 使用托管方式的disconf配置(无代码侵入, 配置更改会自动reload)-->
+    <bean id="configproperties_disconf"
+          class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:/environment.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="propertyConfigurer"
+          class="com.baidu.disconf.client.addons.properties.ReloadingPropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="propertiesArray">
+            <list>
+                <ref bean="configproperties_disconf"/>
+            </list>
+        </property>
+    </bean>
 
+    <!-- 使用托管方式的disconf配置(无代码侵入, 配置更改不会自动reload)-->
+    <!--<bean id="configproperties_no_reloadable_disconf"
+          class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>myserver.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="propertyConfigurerForProject1"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="propertiesArray">
+            <list>
+                <ref bean="configproperties_no_reloadable_disconf"/>
+            </list>
+        </property>
+    </bean>-->
+
+
+
+    <!--<bean class="swagger.SpringfoxDocConfig"/>-->
+    <!--&lt;!&ndash; 直接访问的静态文件 &ndash;&gt;-->
+    <!--<mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/"/>-->
+    <import resource="classpath:spring-config-taskwork.xml"></import>
 </beans>

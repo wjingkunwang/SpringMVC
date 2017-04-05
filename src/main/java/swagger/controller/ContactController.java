@@ -40,7 +40,7 @@ public class ContactController {
     @RequestMapping(value = "/1.0/contact1111111111/update.do/{id}", method = RequestMethod.POST)
     @ApiImplicitParam(name = "contact", value = "ceshi", required = true, dataType = "部门")
     @ApiOperation(value = "创建用户", notes = "返回用户实体对象", response = Department.class, position = 2)
-    public void update1(Contact contact, int hhhh) {
+    public void update1(Contact contact, @ApiParam(value = "分类ID", required = true) @RequestParam Long categoryId) {
         // contact.setId(id);;
         // contactService.update(contact);
     }

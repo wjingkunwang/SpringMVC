@@ -15,7 +15,7 @@
     </context-param>
 
     <!-- POST中文乱码过滤器 -->
-    <filter>
+   <!-- <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -35,8 +35,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:applicationContext.xml</param-value>
-            <!--<param-value>classpath:conversion_dispatcher1-servlet.xml</param-value>-->
+            <param-value>classpath:conversion_dispatcher1-servlet.xml</param-value>
         </init-param>
         <load-on-startup>0</load-on-startup>
     </servlet>
@@ -48,5 +47,5 @@
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list>-->
 </web-app>

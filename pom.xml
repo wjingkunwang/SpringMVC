@@ -197,6 +197,13 @@
             <version>3.4</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.baidu.disconf</groupId>
+            <artifactId>disconf-client</artifactId>
+            <version>2.6.36</version>
+        </dependency>
+
     </dependencies>
 
 
